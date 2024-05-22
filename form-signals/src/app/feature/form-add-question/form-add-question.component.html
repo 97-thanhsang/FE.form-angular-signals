@@ -1,3 +1,63 @@
-<p>
-  form-add-question works!
-</p>
+<div class="modal-box">
+  <form  class="modal-builder" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="modal-quest">
+      <div class="modal-quest-item">
+        <div class="modal-quest-item__heading">
+          <h3 class="modal-quest-item__heading-title">
+            Add a New Questions
+          </h3>
+        </div>
+        <div class="modal-quest-item__type">
+          <select id="gender" formControlName="gender">
+            <option value="" disabled>Checkbox List</option>
+            <option value="{{typeQuestion.TEXT}}">Paragrph</option>
+            <option value="{{typeQuestion.CHECKBOX}}">Checkbox list</option>
+          </select>
+          <div *ngIf="form.controls.gender.invalid && form.controls.gender.touched">
+            Gender is required.
+          </div>
+        </div>
+        <div class="modal-quest-item__quest">
+          <input id="name" formControlName="name" />
+          <div *ngIf="form.controls.name.invalid && form.controls.name.touched">
+            Name is required.
+          </div>
+        </div>
+        <div *ngIf="form.controls.gender.value !== '{{typeQuestion.CHECKBOX}}'">
+          <div class="modal-quest-item__answer">
+            <ul class="modal-quest-item__answer-list">
+              <li class="modal-quest-item__answer-item" *ngFor="let item of items.controls; let i = index">
+                <input type="text" class="modal-quest-item__answer-item-content" [formControlName]="i">
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+        <!-- <div class="modal-answer-item">
+
+          <ng-container *ngIf="question.Type === typeQuestion.TEXT; then textTemp; else checkTemp"></ng-container>
+          <ng-template #textTemp>
+            <textarea name="" id="" class="modal-answer-item__text"></textarea>
+          </ng-template>
+          <ng-template #checkTemp>
+            <ul class="modal-answer-item__option">
+              <ng-container *ngFor="let answer of question.Content">
+                <li class="modal-answer-item__option-item">
+                  <input type="checkbox" name="" id="" class="modal-answer-item__option-item-check" [checked]="answer.Checked">
+                  <span class="modal-answer-item__option-item-label">{{answer.Title}}</span>
+                </li>
+              </ng-container>
+
+            </ul>
+          </ng-template>
+        </div> -->
+      </div>
+    </div>
+    <div class="modal-action">
+      <button class="modal-action__submit-btn" [disabled]="form.invalid">Submit</button>
+    </div>
+  </form>
+</div>
+
+

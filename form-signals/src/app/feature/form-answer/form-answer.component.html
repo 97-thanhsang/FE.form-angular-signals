@@ -1,41 +1,33 @@
-<div class="modal">
-  <div class="modal-box">
-    <div class="modal-builder">
-      <div class="modal-quest">
-        <div class="modal-quest-item" *ngFor="let question of questions()">
-          <div class="modal-quest-item__heading">
-            <h3 class="modal-quest-item__heading-title">
-              {{question.Title}}
-            </h3>
-          </div>
-          <div class="modal-answer-item">
+<div class="modal-box">
+  <div class="modal-builder">
+    <div class="modal-quest">
+      <div class="modal-quest-item" *ngFor="let question of questions()">
+        <div class="modal-quest-item__heading">
+          <h3 class="modal-quest-item__heading-title">
+            {{question.Title}}
+          </h3>
+        </div>
+        <div class="modal-answer-item">
 
-            <ng-container *ngIf="question.Type === typeQuestion.TEXT; then textTemp; else checkTemp"></ng-container>
-            <ng-template #textTemp>
-              <span class="modal-answer-item__text">{{question.Content}}</span>
-            </ng-template>
-            <ng-template #checkTemp>
-              <ul class="modal-answer-item__option">
-                <ng-container *ngFor="let answer of question.Content">
-                  <li class="modal-answer-item__option-item" *ngIf="answer.Checked">
-                    <span class="modal-answer-item__option-item-label">{{answer.Title}}</span>
-                  </li>
-                </ng-container>
+          <ng-container *ngIf="question.Type === typeQuestion.TEXT; then textTemp; else checkTemp"></ng-container>
+          <ng-template #textTemp>
+            <span class="modal-answer-item__text">{{question.Content}}</span>
+          </ng-template>
+          <ng-template #checkTemp>
+            <ul class="modal-answer-item__option">
+              <ng-container *ngFor="let answer of question.Content">
+                <li class="modal-answer-item__option-item" *ngIf="answer.Checked">
+                  <span class="modal-answer-item__option-item-label">{{answer.Title}}</span>
+                </li>
+              </ng-container>
 
-              </ul>
-            </ng-template>
-          </div>
+            </ul>
+          </ng-template>
         </div>
       </div>
-      <div class="modal-action">
-        <a href="#" class="modal-action__add-btn" (click)="backQuest()">Back to Forms Builder</a>
-      </div>
+    </div>
+    <div class="modal-action">
+      <a href="#" class="modal-action__add-btn" (click)="backQuest()">Back to Forms Builder</a>
     </div>
   </div>
-
-
 </div>
-
-
-
-

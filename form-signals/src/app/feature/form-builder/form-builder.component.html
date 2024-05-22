@@ -1,56 +1,49 @@
-<div class="modal">
-  <div class="modal-box">
-    <div class="modal-builder">
-      <div class="modal-quest">
-        <div class="modal-quest-item" *ngFor="let question of questions()">
-          <div class="modal-quest-item__heading">
-            <h3 class="modal-quest-item__heading-title">
-              {{question.Title}}
-            </h3>
-          </div>
-          <div class="modal-answer-item">
+<div class="modal-box">
+  <div class="modal-builder">
+    <div class="modal-quest">
+      <div class="modal-quest-item" *ngFor="let question of questions()">
+        <div class="modal-quest-item__heading">
+          <h3 class="modal-quest-item__heading-title">
+            {{question.Title}}
+          </h3>
+        </div>
+        <div class="modal-answer-item">
 
-            <ng-container *ngIf="question.Type === typeQuestion.TEXT; then textTemp; else checkTemp"></ng-container>
-            <ng-template #textTemp>
-              <textarea name="" id="" class="modal-answer-item__text"></textarea>
-              <!-- <input type="text" class="modal-answer-item__text"> -->
-            </ng-template>
-            <ng-template #checkTemp>
-              <ul class="modal-answer-item__option">
-                <ng-container *ngFor="let answer of question.Content">
-                  <li class="modal-answer-item__option-item">
-                    <input type="checkbox" name="" id="" class="modal-answer-item__option-item-check" [checked]="answer.Checked">
-                    <span class="modal-answer-item__option-item-label">{{answer.Title}}</span>
-                  </li>
-                </ng-container>
+          <ng-container *ngIf="question.Type === typeQuestion.TEXT; then textTemp; else checkTemp"></ng-container>
+          <ng-template #textTemp>
+            <textarea name="" id="" class="modal-answer-item__text"></textarea>
+            <!-- <input type="text" class="modal-answer-item__text"> -->
+          </ng-template>
+          <ng-template #checkTemp>
+            <ul class="modal-answer-item__option">
+              <ng-container *ngFor="let answer of question.Content">
+                <li class="modal-answer-item__option-item">
+                  <input type="checkbox" name="" id="" class="modal-answer-item__option-item-check" [checked]="answer.Checked">
+                  <span class="modal-answer-item__option-item-label">{{answer.Title}}</span>
+                </li>
+              </ng-container>
 
-              </ul>
-            </ng-template>
-          </div>
+            </ul>
+          </ng-template>
         </div>
       </div>
-      <div class="modal-action">
-        <a href="#" class="modal-action__add-btn" (click)="addQuest()">Add New Question</a>
-        <br>
-        <button class="modal-action__view-btn" (click)="viewAnswer()">Review my answer ></button>
-
-      </div>
     </div>
-    <div class="modal-add-quest">
-      <header class="modal-add-quest__heading">
-        <h3 class="modal-add-quest__heading-title">
-          Add a New Questions
-        </h3>
-      </header>
-      <div class="modal-add-quest__body">
+    <div class="modal-action">
+      <a href="#" class="modal-action__add-btn" (click)="addQuest()">Add New Question</a>
+      <br>
+      <button class="modal-action__view-btn" (click)="viewAnswer()">Review my answer ></button>
 
-      </div>
-      modal
     </div>
   </div>
+  <div class="modal-add-quest">
+    <header class="modal-add-quest__heading">
+      <h3 class="modal-add-quest__heading-title">
+        Add a New Questions
+      </h3>
+    </header>
+    <div class="modal-add-quest__body">
 
+    </div>
+    modal
+  </div>
 </div>
-
-
-
-
