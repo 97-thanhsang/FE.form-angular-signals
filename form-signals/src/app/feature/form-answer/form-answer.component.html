@@ -12,14 +12,12 @@
 
             <ng-container *ngIf="question.Type === typeQuestion.TEXT; then textTemp; else checkTemp"></ng-container>
             <ng-template #textTemp>
-              <textarea name="" id="" class="modal-answer-item__text"></textarea>
-              <!-- <input type="text" class="modal-answer-item__text"> -->
+              <span class="modal-answer-item__text">{{question.Content}}</span>
             </ng-template>
             <ng-template #checkTemp>
               <ul class="modal-answer-item__option">
                 <ng-container *ngFor="let answer of question.Content">
-                  <li class="modal-answer-item__option-item">
-                    <input type="checkbox" name="" id="" class="modal-answer-item__option-item-check" [checked]="answer.Checked">
+                  <li class="modal-answer-item__option-item" *ngIf="answer.Checked">
                     <span class="modal-answer-item__option-item-label">{{answer.Title}}</span>
                   </li>
                 </ng-container>
@@ -30,24 +28,11 @@
         </div>
       </div>
       <div class="modal-action">
-        <a href="#" class="modal-action__add-btn" (click)="addQuest()">Add New Question</a>
-        <br>
-        <button class="modal-action__view-btn" (click)="viewAnswer()">Review my answer ></button>
-
+        <a href="#" class="modal-action__add-btn" (click)="backQuest()">Back to Forms Builder</a>
       </div>
-    </div>
-    <div class="modal-add-quest">
-      <header class="modal-add-quest__heading">
-        <h3 class="modal-add-quest__heading-title">
-          Add a New Questions
-        </h3>
-      </header>
-      <div class="modal-add-quest__body">
-
-      </div>
-      modal
     </div>
   </div>
+
 
 </div>
 

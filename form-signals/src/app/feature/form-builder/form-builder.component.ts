@@ -3,64 +3,28 @@ import { IQuestionModel } from '../../model/IBuilder.model';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormBuilderService } from '../../service/form-builder.service';
 import { TypeQuestion } from '../../service/constant/enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-builder',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './form-builder.component.html',
-  styleUrl: './form-builder.component.css'
+  styleUrl: './form-builder.component.scss'
 })
 export class FormBuilderComponent implements OnInit {
 
+
   typeQuestion = TypeQuestion;
 
-  tempQuest: IQuestionModel[] = [{
-    ID: this.formBuilderService.generateGUID(),
-    Type: TypeQuestion.TEXT,
-    Title: 'Please tell us about yourself *',
-    Content: [{
-      ID: this.formBuilderService.generateGUID(),
-      Title:'',
-      Content: undefined,
-      Checked: false
-    }],
-    IsRequired: false
-  },
-  {
-    ID: this.formBuilderService.generateGUID(),
-    Type: TypeQuestion.CHECKBOX,
-    Title: 'Please select the languages you know *',
-    Content : [{
-      ID: this.formBuilderService.generateGUID(),
-      Title:'Typescript',
-      Content: undefined,
-      Checked: false
-    },
-    {
-      ID: this.formBuilderService.generateGUID(),
-      Title:'Python',
-      Content: undefined,
-      Checked: false
-    },
-    {
-      ID: this.formBuilderService.generateGUID(),
-      Title:'C#',
-      Content: undefined,
-      Checked: false
-    },
-    {
-      ID: this.formBuilderService.generateGUID(),
-      Title:'Other',
-      Content: undefined,
-      Checked: true
-    }],
-    IsRequired: false
-  }];
+   questions = signal<IQuestionModel[]>([]);
 
-  questions = signal<IQuestionModel[]>([]);
 
-  constructor(private formBuilderService : FormBuilderService){
+
+  constructor(
+    private formBuilderService : FormBuilderService,
+    private router: Router
+  ){
 
   }
 
@@ -72,9 +36,13 @@ export class FormBuilderComponent implements OnInit {
   // }
   // public questions : IQuestionModel[] = [];
   ngOnInit(): void {
-    this.questions.set(this.tempQuest);
+    debugger
+    this.questions.set(this.formBuilderService.GetQuestions());
   }
   addQuest() {
 
+  }
+  viewAnswer() {
+    this.router.navigate(['/form/answer']);
   }
 }

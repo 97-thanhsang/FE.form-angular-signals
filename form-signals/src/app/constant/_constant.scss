@@ -21,10 +21,13 @@
 html{
   scroll-behavior: smooth;
   font-family: Helvetica,Arial,sans-serif;
+
 }
+
 ul{
   list-style-type: none;
 }
+
 .modal{
   position: fixed;
   top: 0;
@@ -36,15 +39,31 @@ ul{
   justify-content: center;
 
 }
+.modal-box{
+  display: flex;
+  height: 100%;
+}
+
 .modal-builder{
-  position: absolute;
-  top: 25%;
-  left: 25%;
+  position: relative;
   width: 30rem;
   min-height: 30rem;
   background-color: #fff;
   border-radius: 4px;
   padding: 12px;
+  margin: auto;
+}
+.modal-add-quest{
+  position: relative;
+  width: 30rem;
+  min-height: 30rem;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 12px;
+  margin: auto;
+  display: none;
+  -webkit-animation: fadeIn linear .5s;
+          animation: fadeIn linear .5s;
 }
 .modal-quest-item{
   margin-bottom: 16px;
@@ -100,3 +119,22 @@ ul{
   cursor: pointer;
 }
 
+@-webkit-keyframes fadeIn {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from{
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to{
+    transform: translateX(1);
+    opacity: 1;
+  }
+}
